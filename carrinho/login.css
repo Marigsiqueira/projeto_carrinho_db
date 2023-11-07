@@ -1,0 +1,45 @@
+body{
+    background-color: rosybrown;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#campo-um{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10%;
+    margin-left: 0%;
+}
+
+#campo-dois{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+    margin-left: 25%;
+    
+    
+}
+
+#campo-login{
+    width: 20%;
+    height: 10%;
+    margin-top: 7%;
+    text-align: center;
+    background-color: aliceblue;
+    padding: 3%;
+    border-radius: 10px;
+    
+}
+
+.input-estilo{
+    margin-bottom: 0%;
+    
+}
+
+#txt{
+    margin-top: 1%;
+}

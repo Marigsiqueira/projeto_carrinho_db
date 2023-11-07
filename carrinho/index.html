@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="header"></div>
+        <h2 id="lover-store">LOVER STORE</h2>
+
+    <div id="produtos"></div>
+        
+        
+    <div id="carrinho"></div>
+
+    <div id="botao"></div>
+    
+
+<script>   
+        const itens = [
+            {
+                id: 0,
+                nome: 'Camiseta Smile Face',
+                img: 'camiseta250px.jpg',
+                quantidade: 0,
+                preco: 29.00
+            },
+            {
+                id: 1,
+                nome: 'Moletom Taylor Swift',
+                img: 'moletom4taylor250px.jpg',
+                quantidade: 0,
+                preco: 89.90
+            },
+            {
+                id: 2,
+                nome: 'Moletom The Eras Tour',
+                img: 'moletooomts.jpg',
+                quantidade: 0,
+                preco: 89.90
+            },
+            {
+                id: 3,
+                nome: 'Moletom Walls',
+                img: 'moletom3250px.jpg',
+                quantidade: 0,
+                preco: 59.90
+            },
+            {
+                id: 4,
+                nome: 'Camiseta Nike',
+                img: 'camisetanike250px.png',
+                quantidade: 0,
+                preco: 49.90
+            }
+        ]
+
+        const containerProdutos = document.getElementById('produtos');
+        let total = 0;
+
+
+        const inicializarLoja = () => {
+
+            /* containerProdutos.innerHTML += `
+            <div id="header">
+            <h1>LOVER STORE</h1>
+            </div>
+            `; */
+            
+            itens.map((val) => {
+                containerProdutos.innerHTML += `
+                    
+                    <div class="produto-single">
+                        <img src="${val.img}"/>
+                        <p>${val.nome}</p>
+                        <p>Preço: R$${val.preco.toFixed(2)}</p>
+                        <a data-key="${val.id}" href="#">Adicionar ao carrinho</a>
+                    </div>
+                `;
+            });
+
+            
+            
+            adicionarEventListeners();
+        }
+
+        const atualizarCarrinho = () => {
+
+            
+            const carrinho = document.getElementById('carrinho');
+            carrinho.innerHTML = '';
+            let total = 0;
+            carrinho.innerHTML += `
+                <div id=txt-carrinho><h1>CARRINHO</h1></div>`;
+
+            itens.map((val) => {
+                if (val.quantidade > 0) {
+                    total += val.quantidade * val.preco;
+                    carrinho.innerHTML += `
+                        <div class="carrinho-item">
+                            <img src="${val.img}" alt="${val.nome}" class="produto-single">
+                            <p>${val.nome} - Quantidade: ${val.quantidade} - Preço: R$${(val.quantidade * val.preco).toFixed(2)}</p>
+                            
+                        </div>
+                    `;
+                }
+            });
+
+         carrinho.innerHTML += `<p>Total: R$${total.toFixed(2)}</p>`;
+         carrinho.innerHTML += `
+        <button id="finish" type="submit" onclick="finalizarCompra()">Finalizar compra</button>`;
+
+        }
+
+        function finalizarCompra(){
+            window.alert("Compra finalizada! Volte Sempre")
+            let url = "index.html";                
+            window.location.replace(url); // replace no lugar de href redireciona sem abrir outra aba
+            }
+
+    
+        const adicionarEventListeners = () => {
+            const links = document.querySelectorAll('a');
+
+            links.forEach((link) => {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    let key = this.getAttribute('data-key');
+                    itens[key].quantidade++;
+                    atualizarCarrinho();
+                    console.log(itens)
+                });
+            });
+        }
+
+        inicializarLoja();
+    </script> 
+    
+</body>
+</html>

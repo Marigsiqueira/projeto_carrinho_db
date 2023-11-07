@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>LOVER STORE</h1>
+    <div id=campo-login>
+        <h1 id="txt">Login</h1>
+
+        <form class="form">
+            <input type="text" name="username" id="nomeLogin" placeholder="Nome de Usuário">
+            <input type="password" name="senha" id="senhaLogin" placeholder="Senha">
+            <button type="submit"  >Login</button>
+        </form>
+          
+
+
+        <div id="campo-dois">
+            <button type="submit">Cadastre-se</button>
+            
+        </div>
+    </div>
+        
+    </div>
+
+    <script>
+
+        const formE1 = document.querySelector(".form");
+
+        formE1.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(formE1);
+
+          let user = formData.get("username");
+          let pass = formData.get("senha");
+
+          const data = new URLSearchParams(formData)
+
+          fetch('http://localhost:3030/projeto/logar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body :  JSON.stringify({
+                    "nome": `${user}`,
+                    "senha": `${pass}`
+                })
+          }).then(res => res.json())
+            .then(data => {
+                if(data == 5){
+                    document.location.href= 'index.html'
+                }
+            })
+            .catch(error => console.log(error))
+
+        })
+
+    </script>
+    
+</body>
+</html>
