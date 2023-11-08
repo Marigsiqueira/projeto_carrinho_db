@@ -53,8 +53,11 @@
                 })
           }).then(res => res.json())
             .then(data => {
-                if(data == 5){
+                console.log(data);
+                if(data == 1){
                     document.location.href= 'index.html'
+                }else{
+                    window.alert("Usuario incorreto")
                 }
             })
             .catch(error => console.log(error))

@@ -5,8 +5,7 @@ const rotas = require('../src/routes/index')
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-app.use('/projeto', rotas) //era projeto essa rota
+app.use('/projeto', rotas);
 
 const porta = 3030;
 
